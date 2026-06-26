@@ -1,4 +1,4 @@
--- KEY SYSTEM
+ -- KEY SYSTEM
 local CorrectKey = "script key : hevbdjrvr fb"
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
