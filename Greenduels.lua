@@ -22,7 +22,6 @@ KeySection:NewButton("Verify", "Check key", function()
     end
 end)
 
-
 -- MAIN SCRIPT
 function MainScript()
 
@@ -65,10 +64,7 @@ function MainScript()
                 end
             end
         end)
-    end)
-
-
-    -- [Movement Tab]
+    end)end)-- [Movement Tab]
     local PlayerTab = Window:NewTab("Movement")
     local PlayerSection = PlayerTab:NewSection("Physical Enhancements")
 
@@ -104,10 +100,7 @@ function MainScript()
                 hl.FillTransparency = 0.5
             end
         end
-    end)
-
-
-    -- [System Tab]
+    end)end)-- [System Tab]
     local SystemTab = Window:NewTab("System")
     local SystemSection = SystemTab:NewSection("Utility")
 
@@ -115,7 +108,21 @@ function MainScript()
         local VirtualUser = game:GetService("VirtualUser")
         game:GetService("Players").LocalPlayer.Idled:Connect(function()
             VirtualUser:CaptureCursor()
+            VirtualUser:ClickButton2(Vector2.new())
         end)
+    end)
+
+    SystemSection:NewButton("Rejoin Server", "サーバーに再参加します", function()
+        local ts = game:GetService("TeleportService")
+        local p = game:GetService("Players").LocalPlayer
+        ts:Teleport(game.PlaceId, p)
+    end)
+
+    SystemSection:NewButton("Reset Character", "キャラクターをリセットします", function()
+        local char = game.Players.LocalPlayer.Character
+        if char and char:FindFirstChild("Humanoid") then
+            char.Humanoid.Health = 0
+        end
     end)
 
     SystemSection:NewButton("Destroy UI", "UIを削除して終了します", function()
@@ -124,4 +131,15 @@ function MainScript()
         end
     end)
 
+    -- Extra Safety
+    spawn(function()
+        while task.wait(1) do
+            pcall(function()
+                local char = game.Players.LocalPlayer.Character
+                if char and char:FindFirstChild("Humanoid") and _G.GodMode then
+                    char.Humanoid.Health = char.Humanoid.MaxHealth
+                end
+            end)
+        end
+    end)-- End of MainScript safety loop
 end
