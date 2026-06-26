@@ -7,7 +7,20 @@ local KeyWindow = Library.CreateLib("Yais Hub - Key System", "DarkTheme")
 local KeyTab = KeyWindow:NewTab("Verification")
 local KeySection = KeyTab:NewSection("Enter your key")
 
-local UserKey = ""--[[ 
+local UserKey = ""
+
+KeySection:NewTextBox("Key Input", "Enter key", function(txt)
+    UserKey = txt
+end)
+
+KeySection:NewButton("Verify", "Check key", function()
+    if UserKey == CorrectKey then
+        KeyWindow:Destroy()
+        MainScript()
+    else
+        print("❌ Wrong key!")
+    end
+end)function MainScript()--[[ 
     Yais Hub - Green Duels Edition
     Key: teuvrnidbbe
     
@@ -137,4 +150,5 @@ function MainScript()
     SystemSection:NewButton("Destroy UI", "UIを削除して終了します", function()
         game:GetService("CoreGui"):FindFirstChild("Yais Hub"):Destroy()
     end)
+end
 end
