@@ -1,4 +1,13 @@
---[[ 
+-- KEY SYSTEM
+local CorrectKey = "script key : hevbdjrvr fb"
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local KeyWindow = Library.CreateLib("Yais Hub - Key System", "DarkTheme")
+local KeyTab = KeyWindow:NewTab("Verification")
+local KeySection = KeyTab:NewSection("Enter your key")
+
+local UserKey = ""--[[ 
     Yais Hub - Green Duels Edition
     Key: teuvrnidbbe
     
